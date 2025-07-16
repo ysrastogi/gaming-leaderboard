@@ -1,2 +1,22 @@
+# Python-related files
 *.pyc
 *.pyo
+__pycache__/
+
+# Log files
+*.log
+
+# Next.js build files
+.next/
+
+# Node.js dependencies
+node_modules/
+
+# macOS system files
+.DS_Store
+
+# Environment files
+*.env
+
+# Binary files
+bin/
