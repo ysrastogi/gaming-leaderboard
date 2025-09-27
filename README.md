@@ -28,6 +28,42 @@ The following API endpoints are implemented:
    - **GET** `/api/leaderboard/rank/{user_id}`
    - Fetches the current rank of the specified player.
 
+## CLI Commands
+
+The backend provides several CLI commands to manage the database and perform administrative tasks. These commands can be found in `backend/cli.py`.
+
+### Available Commands
+
+1. **Initialize Database**
+   ```bash
+   python -m backend.cli init-db
+   ```
+   Initializes the database by running all Alembic migrations.
+
+2. **Populate Database**
+   ```bash
+   python -m backend.cli populate [OPTIONS]
+   ```
+   Populates the database with test data.
+
+   Options:
+   - `--users INTEGER`: Number of users to create (default: 1,000,000)
+   - `--sessions INTEGER`: Number of game sessions to create (default: 5,000,000)
+   - `--clear`: Clear all data before populating
+   - `--users-only`: Only populate users
+   - `--sessions-only`: Only populate game sessions
+   - `--leaderboard-only`: Only populate leaderboard
+
+3. **Execute SQL**
+   ```bash
+   python -m backend.cli execute-sql --sql-file PATH
+   ```
+   Executes a SQL file against the database.
+
+   Options:
+   - `--sql-file PATH`: Path to the SQL file to execute
+
+
 ## Scalability
 
 The system is designed to handle up to 1 million records efficiently. The backend utilizes a robust database management system.
