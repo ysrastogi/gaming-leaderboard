@@ -7,3 +7,4 @@ databases
 asyncpg
 httpx
 python-multipart
+fastapi_cache
