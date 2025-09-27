@@ -4,19 +4,6 @@ This project implements a scalable gaming leaderboard system using Next.js for t
 
 ## Project Structure
 
-The project is organized into two main directories: `frontend` and `backend`.
-
-### Frontend
-
-The frontend is built with Next.js and includes the following key components:
-
-- **Public Assets**: Contains static files like the favicon.
-- **App Structure**: The main application files are located in `src/app`, including the main page and layout.
-- **Components**: Reusable components such as `Leaderboard`, `PlayerCard`, and `ScoreSubmission` are located in `src/components`.
-- **API Integration**: The `lib/api.ts` file handles API calls to the backend.
-- **Custom Hooks**: The `hooks/useLeaderboard.ts` file manages the leaderboard state.
-
-### Backend
 
 The backend is built with FastAPI and includes:
 
@@ -43,7 +30,7 @@ The following API endpoints are implemented:
 
 ## Scalability
 
-The system is designed to handle up to 1 million records efficiently. The backend utilizes a robust database management system, and the frontend is optimized for performance to ensure a smooth user experience.
+The system is designed to handle up to 1 million records efficiently. The backend utilizes a robust database management system.
 
 ## Getting Started
 
@@ -58,27 +45,12 @@ To run the project locally, follow these steps:
 2. Set up the backend:
    - Navigate to the `backend` directory and install dependencies:
      ```
-     cd backend
      pip install -r requirements.txt
      ```
    - Run the FastAPI application:
      ```
      uvicorn app.main:app --reload
      ```
-
-3. Set up the frontend:
-   - Navigate to the `frontend` directory and install dependencies:
-     ```
-     cd frontend
-     npm install
-     ```
-   - Run the Next.js application:
-     ```
-     npm run dev
-     ```
-
-4. Access the application:
-   - Open your browser and go to `http://localhost:3000` for the frontend.
 
 ## License
 
