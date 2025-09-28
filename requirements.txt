@@ -9,3 +9,4 @@ httpx
 python-multipart
 fastapi-cache2
 redis
+python-dotenv
