@@ -219,6 +219,41 @@ async def get_player_rank(user_id: int, db: Session = Depends(get_db)):
             detail=f"Failed to fetch player rank: {str(e)}",
         )
 
+@router.post("/create/", response_model=List[int])
+def create_test_users(count: int = 1000000, db: Session = Depends(get_db)):
+    try:
+        current_time = datetime.now()
+        new_user_ids = []
+
+        # Find the last created player index (so we don’t overwrite usernames)
+        last_user = db.query(User).order_by(User.id.desc()).first()
+        start_index = last_user.id + 1 if last_user else 1
+
+        for i in range(start_index, start_index + count):
+            username = f"player_{i}"
+            
+            user = User(
+                username=username,
+                join_date=current_time
+            )
+            db.add(user)
+            db.flush()  # get user.id before commit
+            new_user_ids.append(user.id)
+
+            # Commit every 100 users to avoid large transactions
+            if i % 10000 == 0:
+                db.commit()
+                print(f"Created {i} users")
+        
+        db.commit()
+
+        print(f"Successfully created {len(new_user_ids)} new users.")
+    
+    except Exception as e:
+        db.rollback()
+        print(f"Error creating users: {str(e)}")
+        return []
+
 
 async def _update_leaderboard_ranks(db: Session):
     """
@@ -300,3 +335,5 @@ def _update_single_player_rank(db: Session, user_id: int):
     except Exception as e:
         db.rollback()
         raise e
+    
+
