@@ -248,6 +248,7 @@ def create_test_users(count: int = 1000000, db: Session = Depends(get_db)):
         db.commit()
 
         print(f"Successfully created {len(new_user_ids)} new users.")
+        return new_user_ids
     
     except Exception as e:
         db.rollback()
